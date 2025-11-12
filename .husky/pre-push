@@ -2,5 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "🚀 Running build verification before push..."
-pnpm lint
+pnpm exec prettier --write .
+pnpm lint --fix
 pnpm build
