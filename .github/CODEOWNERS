@@ -1,0 +1,13 @@
+# Core apps
+/apps/web/        @karesseclemons
+/apps/cms/        @karesseclemons
+/apps/mobile/     @karesseclemons
+/apps/tv/         @karesseclemons
+
+# Shared packages
+/packages/ui/     @karesseclemons
+/packages/api-client/ @karesseclemons
+/packages/config/ @karesseclemons
+
+# Services
+/services/auth/   @karesseclemons
