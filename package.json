@@ -1,8 +1,10 @@
 {
   "name": "wavenation-monorepo",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@9.9.0",
+  "description": "WaveNation Monorepo – unified codebase for web, mobile, tv, and CMS apps with shared packages.",
   "scripts": {
     "dev:web": "pnpm --filter web dev",
     "dev:cms": "pnpm --filter cms dev",
@@ -10,8 +12,11 @@
     "dev:mobile": "pnpm --filter mobile start",
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
+    "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write ."
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -37,5 +42,25 @@
     "turbo": "^2.6.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4"
-  }
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "pnpm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/metrowave-digital/wavenation-monorepo.git"
+  },
+  "keywords": [
+    "monorepo",
+    "wavenation",
+    "nextjs",
+    "payloadcms",
+    "expo",
+    "react-native",
+    "turbo",
+    "pnpm"
+  ],
+  "author": "Karesse Clemons <karesseclemons.com>",
+  "license": "MIT"
 }

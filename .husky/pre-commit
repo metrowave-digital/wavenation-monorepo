@@ -1,5 +1,13 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
 echo "🔍 Running lint-staged pre-commit checks..."
-pnpm lint-staged
+
+# Step 1: Run lint-staged on staged files only
+pnpm exec lint-staged || {
+  echo "❌ Lint-staged found issues that couldn't be fixed automatically."
+  echo "💡 Fix them manually or run 'pnpm exec lint-staged' to retry."
+  exit 1
+}
+
+echo "✅ Pre-commit checks passed!"
