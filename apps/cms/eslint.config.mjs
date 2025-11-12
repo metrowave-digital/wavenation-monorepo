@@ -1,9 +1,9 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import reactHooks from 'eslint-plugin-react-hooks';
-import react from 'eslint-plugin-react';
-import nextPlugin from '@next/eslint-plugin-next';
-import prettier from 'eslint-plugin-prettier';
+import js from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import reactHooks from 'eslint-plugin-react-hooks'
+import react from 'eslint-plugin-react'
+import nextPlugin from '@next/eslint-plugin-next'
+import prettier from 'eslint-plugin-prettier'
 
 export default [
   js.configs.recommended,
@@ -60,4 +60,4 @@ export default [
   {
     ignores: ['.next/', 'node_modules/', 'dist/', 'build/', 'coverage/'],
   },
-];
+]
