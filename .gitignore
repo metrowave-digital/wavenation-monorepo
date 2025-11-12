@@ -1,0 +1,182 @@
+# =========================================================
+# 🌊 WAVE NATION MONOREPO GITIGNORE
+# Apps: web, cms, tv, mobile
+# Packages: ui, api-client, config, auth-service
+# =========================================================
+
+# ----------------------------
+# Node / PNPM / Environment
+# ----------------------------
+node_modules/
+.pnpm-store/
+.npm/
+*.log
+yarn.lock
+package-lock.json
+.pnpm-debug.log*
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+
+# ----------------------------
+# Build & Output
+# ----------------------------
+dist/
+build/
+out/
+.next/
+.cache/
+coverage/
+.tmp/
+temp/
+public/static/
+public/uploads/
+*.tsbuildinfo
+
+# ----------------------------
+# TurboRepo Cache
+# ----------------------------
+.turbo/
+turbo/
+
+# ----------------------------
+# Environment Files
+# ----------------------------
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# ----------------------------
+# TypeScript
+# ----------------------------
+*.tsbuildinfo
+
+# ----------------------------
+# Editor & System Files
+# ----------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+Thumbs.db
+
+# ----------------------------
+# OS Specific
+# ----------------------------
+ehthumbs.db
+Icon?
+.DS_Store
+Desktop.ini
+
+# ----------------------------
+# Logs & Reports
+# ----------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.pid
+*.seed
+*.pid.lock
+
+# ----------------------------
+# CMS & Server Uploads
+# ----------------------------
+uploads/
+media/
+storage/
+.s3_cache/
+cloudflare/
+payload-data/
+payload-media/
+payload-backups/
+*.sqlite
+*.db
+
+# ----------------------------
+# Build Artifacts
+# ----------------------------
+*.zip
+*.tar.gz
+*.tgz
+
+# ----------------------------
+# Testing
+# ----------------------------
+jest-cache/
+jest-test-results.json
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-results/
+coverage/
+
+# ----------------------------
+# Mobile / Expo / React Native
+# ----------------------------
+.expo/
+.expo-shared/
+*.apk
+*.aab
+*.ipa
+ios/build/
+android/app/build/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/.cxx/
+android/captures/
+android/.externalNativeBuild/
+*.keystore
+
+# ----------------------------
+# TV Apps (Roku, FireTV, AppleTV)
+# ----------------------------
+*.bundle
+*.app
+*.ipa
+*.apk
+*.obb
+
+# ----------------------------
+# Vercel / Hostinger / Deployment
+# ----------------------------
+.vercel/
+hostinger-deploy/
+deploy/
+render.yaml
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.local.yml
+*.pem
+*.key
+*.crt
+
+# ----------------------------
+# IDE Artifacts (JetBrains, etc.)
+# ----------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ----------------------------
+# Miscellaneous
+# ----------------------------
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+*.rej
+
+# =========================================================
+# ✅ END OF FILE
+# =========================================================

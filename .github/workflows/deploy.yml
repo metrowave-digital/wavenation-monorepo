@@ -1,0 +1,61 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧩 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: ⚙️ Install Dependencies
+        run: pnpm install
+
+      - name: 🚀 Build Apps
+        run: pnpm turbo run build --filter=web --filter=cms
+
+      # --- DEPLOY TO VPS ---
+      - name: 🔑 Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: 📂 Copy Files to VPS (Web)
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            ./apps/web/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/wavenation/web/
+
+      - name: 📂 Copy Files to VPS (CMS)
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            ./apps/cms/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/wavenation/cms/
+
+      - name: 🔄 Restart PM2 Processes
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd /var/www/wavenation/web
+          pnpm install --prod
+          pm2 restart wavenation-web || pm2 start pnpm --name "wavenation-web" -- run start
+
+          cd /var/www/wavenation/cms
+          pnpm install --prod
+          pm2 restart wavenation-cms || pm2 start pnpm --name "wavenation-cms" -- run start
+          pm2 save
+          EOF

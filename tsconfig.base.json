@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* ===== Core Compiler Settings ===== */
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": false,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* ===== Interop & Modules ===== */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    /* ===== Paths (Monorepo Aliases) ===== */
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["packages/ui/src/*"],
+      "@api-client/*": ["packages/api-client/src/*"],
+      "@config/*": ["packages/config/src/*"],
+      "@auth-service/*": ["services/auth/src/*"]
+    },
+
+    /* ===== JSX & Output ===== */
+    "jsx": "preserve",
+    "noEmit": true
+  },
+  "exclude": ["node_modules", "dist", "build", ".next", "**/*.test.ts", "**/*.spec.ts"]
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./packages/ui" },
+    { "path": "./packages/api-client" },
+    { "path": "./packages/config" },
+    { "path": "./services/auth" },
+    { "path": "./apps/web" },
+    { "path": "./apps/cms" },
+    { "path": "./apps/tv" },
+    { "path": "./apps/mobile" }
+  ]
+}

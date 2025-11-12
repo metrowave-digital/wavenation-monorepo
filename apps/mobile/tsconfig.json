@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    /* ===== 📱 Expo + React Native Defaults ===== */
+    "jsx": "react-native",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* ===== 🧩 Monorepo Path Aliases ===== */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@ui/*": ["../../packages/ui/src/*"],
+      "@api-client/*": ["../../packages/api-client/src/*"],
+      "@config/*": ["../../packages/config/src/*"]
+    }
+  },
+
+  /* ===== 📦 File Includes ===== */
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
+
+  "exclude": ["node_modules"]
+}

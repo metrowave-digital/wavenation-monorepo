@@ -1,0 +1,6 @@
+{
+  "files": [],
+  "references": [{ "path": "./android" }],
+  "include": [],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@wavenation/auth-service",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
