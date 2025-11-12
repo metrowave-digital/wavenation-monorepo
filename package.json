@@ -13,8 +13,9 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint -- --fix",
-    "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "typecheck": "pnpm exec turbo run typecheck --filter=...[HEAD]",
+    "typecheck:full": "pnpm exec turbo run typecheck",
     "prepare": "husky install",
     "format": "prettier --write ."
   },
