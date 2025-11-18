@@ -2,15 +2,16 @@ FROM node:22-alpine
 
 WORKDIR /app
 
+# Copy only CMS package files
 COPY package.json pnpm-lock.yaml ./
-COPY apps/cms ./apps/cms
-COPY packages ./packages
-COPY services ./services
+
+# Copy CMS app
+COPY . .
 
 RUN corepack enable pnpm
-RUN pnpm install --prod
+RUN pnpm install --prod --frozen-lockfile
 
 ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=apps/cms/src/payload.config.ts
+ENV PAYLOAD_CONFIG_PATH=src/payload.config.ts
 
-CMD ["pnpm", "--filter", "cms", "start"]
+CMD ["pnpm", "start"]
