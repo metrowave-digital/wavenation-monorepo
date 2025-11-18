@@ -1,63 +1,38 @@
-import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import reactHooks from 'eslint-plugin-react-hooks'
-import react from 'eslint-plugin-react'
-import nextPlugin from '@next/eslint-plugin-next'
-import prettier from 'eslint-plugin-prettier'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { FlatCompat } from '@eslint/eslintrc'
 
-export default [
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
+
+const eslintConfig = [
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
-    plugins: {
-      'react-hooks': reactHooks,
-      react,
-      '@next/next': nextPlugin,
-      prettier,
-    },
-    languageOptions: {
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-      globals: {
-        window: 'readonly',
-        document: 'readonly',
-        process: 'readonly',
-        __dirname: 'readonly',
-      },
-    },
-    settings: {
-      react: { version: 'detect' },
-    },
     rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          singleQuote: true,
-          semi: true,
-          trailingComma: 'es5',
-          endOfLine: 'lf',
-          arrowParens: 'always',
-        },
-      ],
+      '@typescript-eslint/ban-ts-comment': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
+          vars: 'all',
+          args: 'after-used',
+          ignoreRestSiblings: false,
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^(_|ignore)',
         },
       ],
-      '@typescript-eslint/no-explicit-any': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      '@next/next/no-html-link-for-pages': 'off',
     },
   },
   {
-    ignores: ['.next/', 'node_modules/', 'dist/', 'build/', 'coverage/'],
+    ignores: ['.next/'],
   },
 ]
+
+export default eslintConfig

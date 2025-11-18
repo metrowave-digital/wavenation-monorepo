@@ -4,18 +4,21 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@9.9.0",
-  "description": "WaveNation Monorepo – unified codebase for web, mobile, tv, and CMS apps with shared packages.",
+  "description": "WaveNation Monorepo — unified codebase for Web, CMS, Mobile, and TV apps with shared packages using Turbo + PNPM + PayloadCMS + Expo.",
   "scripts": {
     "dev:web": "pnpm --filter web dev",
     "dev:cms": "pnpm --filter cms dev",
     "dev:tv": "pnpm --filter tv start",
     "dev:mobile": "pnpm --filter mobile start",
     "build": "turbo run build",
+    "build:clean": "rm -rf .turbo && turbo run build",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint -- --fix",
     "test": "turbo run test",
-    "typecheck": "pnpm exec turbo run typecheck --filter=...[HEAD]",
-    "typecheck:full": "pnpm exec turbo run typecheck",
+    "test:ui": "pnpm --filter web test",
+    "test:api": "pnpm --filter cms test",
+    "typecheck": "turbo run typecheck --filter=...[HEAD]",
+    "typecheck:full": "turbo run typecheck",
     "prepare": "husky install",
     "format": "prettier --write ."
   },
@@ -31,18 +34,25 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@next/eslint-plugin-next": "^16.0.1",
+    "@playwright/test": "1.54.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "eslint": "^9.39.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "happy-dom": "^20.0.10",
     "husky": "^8.0.0",
+    "jsdom": "26.1.0",
     "lint-staged": "^16.2.6",
     "pnpm": "^9.9.0",
     "prettier": "^3.6.2",
     "turbo": "^2.6.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.4"
+    "typescript-eslint": "^8.46.4",
+    "vitest": "3.2.3"
   },
   "engines": {
     "node": ">=18.17.0",
@@ -60,8 +70,14 @@
     "expo",
     "react-native",
     "turbo",
-    "pnpm"
+    "pnpm",
+    "graphql",
+    "typescript"
   ],
   "author": "Karesse Clemons <karesseclemons.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@payloadcms/next": "^3.64.0",
+    "cross-env": "^7.0.3"
+  }
 }

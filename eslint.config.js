@@ -1,17 +1,43 @@
 // eslint.config.js
+import { fileURLToPath } from 'url';
+import path from 'path';
+
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import reactHooks from 'eslint-plugin-react-hooks';
 import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-plugin-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import next from '@next/eslint-plugin-next';
 
-export default tseslint.config(
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT = path.resolve(__dirname);
+
+export default [
+
+  // ───────────────────────────────────────────────────────────────
+  // 1. BASE CONFIG (JS + TS)
+  // ───────────────────────────────────────────────────────────────
   js.configs.recommended,
   ...tseslint.configs.recommended,
+
+  // ───────────────────────────────────────────────────────────────
+  // 2. MAIN LINTING RULESET
+  // ───────────────────────────────────────────────────────────────
   {
-    ignores: ['node_modules', 'dist', 'build', '.next', 'coverage', '.turbo', 'pnpm-lock.yaml'],
+    files: ['**/*.{ts,tsx,js,jsx}'],
+
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        tsconfigRootDir: ROOT,               // ← FIXED
+        project: ['./tsconfig.json'],         // ← Root tsconfig
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+      },
+    },
 
     plugins: {
       react,
@@ -21,75 +47,68 @@ export default tseslint.config(
       next,
     },
 
-    languageOptions: {
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-      },
-    },
-
     settings: {
       react: { version: 'detect' },
     },
 
     rules: {
-      // 💅 Prettier formatting
+      // Prettier formatting
       'prettier/prettier': [
         'error',
         {
-          endOfLine: 'lf',
-          semi: true,
           singleQuote: true,
+          semi: true,
           trailingComma: 'es5',
+          endOfLine: 'lf',
           printWidth: 100,
-          tabWidth: 2,
-          arrowParens: 'always',
-          bracketSpacing: true,
         },
       ],
 
-      // 🧠 TypeScript hygiene
+      // TS hygiene
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
 
-      // ⚛️ React best practices
+      // React rules
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
 
-      // 🧾 Console cleanup
+      // Console cleanup
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
 
-  // 🧩 Node + CommonJS files (metro, postcss, etc.)
+  // ───────────────────────────────────────────────────────────────
+  // 3. NODE / CONFIG FILES
+  // ───────────────────────────────────────────────────────────────
   {
-    files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
+    files: ['**/*.config.{js,cjs,mjs,ts}'],
+    ignores: true, // Ignore all config files
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // 4. JS COMMONJS OVERRIDE
+  // ───────────────────────────────────────────────────────────────
+  {
+    files: ['**/*.js'],
     languageOptions: {
-      globals: {
-        require: 'readonly',
-        module: 'readonly',
-        __dirname: 'readonly',
-      },
       sourceType: 'commonjs',
-    },
-    rules: {
-      '@typescript-eslint/no-require-imports': 'off',
     },
   },
 
-  // 🧪 Test files (Jest, Playwright, Vitest)
+  // ───────────────────────────────────────────────────────────────
+  // 5. TEST ENVIRONMENTS (Vitest / Playwright)
+  // ───────────────────────────────────────────────────────────────
   {
-    files: ['**/__tests__/**', '**/*.test.*', '**/*.spec.*'],
+    files: ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'],
     languageOptions: {
       globals: {
+        describe: 'readonly',
         it: 'readonly',
         expect: 'readonly',
-        describe: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly',
         beforeAll: 'readonly',
@@ -98,11 +117,22 @@ export default tseslint.config(
     },
   },
 
-  // 📱 React Native overrides (mobile + TV apps)
+  // ───────────────────────────────────────────────────────────────
+  // 6. GLOBAL IGNORES
+  // ───────────────────────────────────────────────────────────────
   {
-    files: ['apps/mobile/**/*.{js,jsx,ts,tsx}', 'apps/tv/**/*.{js,jsx,ts,tsx}'],
-    rules: {
-      '@typescript-eslint/no-require-imports': 'off',
-    },
-  }
-);
+    ignores: [
+      'node_modules',
+      'dist',
+      'build',
+      '.turbo',
+      '.next',
+      'coverage',
+      'pnpm-lock.yaml',
+
+      // Ignore monorepo app build output
+      'apps/**/.expo',
+      'apps/**/build',
+    ],
+  },
+];

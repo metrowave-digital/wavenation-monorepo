@@ -1,164 +1,162 @@
+/* --------------------------------------
+   Brand Variables
+-------------------------------------- */
 :root {
-  --font-mono: 'Roboto Mono', monospace;
+  --color-primary: #E92C63;
+  --color-accent: #00B3FF;
+  --color-green: #39FF14;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #B3B3B3;
+
+  --bg-dark: #0A0A0A;
+
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Inter", sans-serif;
 }
 
+/* Reset */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 18px;
-  line-height: 32px;
-
-  background: rgb(0, 0, 0);
-  -webkit-font-smoothing: antialiased;
-}
-
-html,
-body,
-#app {
+html, body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  overflow: hidden;
   height: 100%;
 }
 
-body {
-  font-family: system-ui;
-  font-size: 18px;
-  line-height: 32px;
+/* --------------------------------------
+   WRAPPER
+-------------------------------------- */
+.wn-admin {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 
-  margin: 0;
-  color: rgb(1000, 1000, 1000);
-
-  @media (max-width: 1024px) {
-    font-size: 15px;
-    line-height: 24px;
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-h1 {
-  margin: 40px 0;
-  font-size: 64px;
-  line-height: 70px;
-  font-weight: bold;
-
-  @media (max-width: 1024px) {
-    margin: 24px 0;
-    font-size: 42px;
-    line-height: 42px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 38px;
-    line-height: 38px;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 32px;
-    line-height: 32px;
-  }
-}
-
-p {
-  margin: 24px 0;
-
-  @media (max-width: 1024px) {
-    margin: calc(var(--base) * 0.75) 0;
-  }
-}
-
-a {
-  color: currentColor;
-
-  &:focus {
-    opacity: 0.8;
-    outline: none;
-  }
-
-  &:active {
-    opacity: 0.7;
-    outline: none;
-  }
-}
-
-svg {
-  vertical-align: middle;
-}
-
-.home {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  padding: 45px;
-  max-width: 1024px;
-  margin: 0 auto;
-  overflow: hidden;
+  padding: 60px 20px;
 
-  @media (max-width: 400px) {
-    padding: 24px;
-  }
+  z-index: 2;
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
+/* --------------------------------------
+   MOVING BACKGROUND (the ONLY animation)
+-------------------------------------- */
+.wn-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(233, 44, 99, 0.35),
+    rgba(0, 179, 255, 0.35),
+    rgba(57, 255, 20, 0.25)
+  );
+  background-size: 300% 300%;
+  animation: bgMove 18s ease infinite;
+  z-index: -2;
+}
 
-    h1 {
-      text-align: center;
-    }
-  }
+@keyframes bgMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  .links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.wn-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
 
-    a {
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-    }
+/* --------------------------------------
+   GLASS COMPONENTS
+-------------------------------------- */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  padding: 24px 32px;
+  border-radius: 14px;
+  margin-bottom: 32px;
+  width: max-content;
+  text-align: center;
+}
 
-    .admin {
-      color: rgb(0, 0, 0);
-      background: rgb(1000, 1000, 1000);
-      border: 1px solid rgb(0, 0, 0);
-    }
+/* --------------------------------------
+   LOGO BLOCK
+-------------------------------------- */
+.wn-logo h1 {
+  margin-top: 12px;
+  font-family: var(--font-primary);
+  font-size: 2.3rem;
+  letter-spacing: -1px;
+  color: var(--color-primary);
+}
 
-    .docs {
-      color: rgb(1000, 1000, 1000);
-      background: rgb(0, 0, 0);
-      border: 1px solid rgb(1000, 1000, 1000);
-    }
-  }
+/* --------------------------------------
+   WELCOME
+-------------------------------------- */
+.wn-welcome h2 {
+  font-family: var(--font-primary);
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
 
-  .footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.wn-welcome p {
+  color: var(--text-secondary);
+}
 
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      gap: 6px;
-    }
+.highlight {
+  color: var(--color-accent);
+}
 
-    p {
-      margin: 0;
-    }
+/* --------------------------------------
+   BUTTONS
+-------------------------------------- */
+.wn-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
 
-    .codeLink {
-      text-decoration: none;
-      padding: 0 0.5rem;
-      background: rgb(60, 60, 60);
-      border-radius: 4px;
-    }
-  }
+.wn-btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+/* Solid */
+.wn-btn.primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.wn-btn.primary:hover {
+  opacity: 0.9;
+}
+
+/* Outline */
+.wn-btn.outline {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.wn-btn.outline:hover {
+  color: #fff;
+  border-color: #fff;
 }
