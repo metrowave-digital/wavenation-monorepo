@@ -9,7 +9,7 @@ COPY package.json pnpm-lock.yaml ./
 COPY . .
 
 RUN corepack enable pnpm
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod
 
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=src/payload.config.ts
