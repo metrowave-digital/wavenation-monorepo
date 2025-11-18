@@ -2,19 +2,19 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Install pnpm
+# Enable pnpm
 RUN corepack enable pnpm
 
-# Copy package files first (layer caching)
+# Copy only CMS package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
-RUN pnpm install --prod --frozen-lockfile
+# Install deps (NO frozen-lockfile because monorepo lockfiles won't match)
+RUN pnpm install --prod
 
-# Copy CMS source
+# Copy CMS app source
 COPY . .
 
-# Build Next.js / Payload admin
+# Build Next.js (creates .next folder)
 RUN pnpm build
 
 ENV NODE_ENV=production
