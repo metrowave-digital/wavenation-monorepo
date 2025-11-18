@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload'
 
 export const Tags: CollectionConfig = {
   slug: 'tags',
@@ -12,4 +12,4 @@ export const Tags: CollectionConfig = {
       required: true,
     },
   ],
-};
+}

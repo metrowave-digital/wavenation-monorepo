@@ -1,7 +1,7 @@
 // apps/cms/src/collections/Polls.ts
 
-import type { CollectionConfig } from 'payload';
-import { allowAdminsAnd } from '../access/control';
+import type { CollectionConfig } from 'payload'
+import { allowAdminsAnd } from '../access/control'
 
 export const Polls: CollectionConfig = {
   slug: 'polls',
@@ -47,4 +47,4 @@ export const Polls: CollectionConfig = {
       defaultValue: true,
     },
   ],
-};
+}

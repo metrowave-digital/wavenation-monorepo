@@ -1,7 +1,7 @@
 // apps/cms/src/collections/Articles.ts
 
-import type { CollectionConfig } from 'payload';
-import { allowAdminsAnd } from '../access/control';
+import type { CollectionConfig } from 'payload'
+import { allowAdminsAnd } from '../access/control'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -37,14 +37,7 @@ export const Articles: CollectionConfig = {
       name: 'mainCategory',
       type: 'select',
       required: true,
-      options: [
-        'Culture',
-        'Music',
-        'Entertainment',
-        'News',
-        'Opinion',
-        'Faith',
-      ],
+      options: ['Culture', 'Music', 'Entertainment', 'News', 'Opinion', 'Faith'],
     },
     {
       name: 'subCategory',
@@ -72,4 +65,4 @@ export const Articles: CollectionConfig = {
       defaultValue: false,
     },
   ],
-};
+}

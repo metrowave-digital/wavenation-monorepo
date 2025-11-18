@@ -1,8 +1,8 @@
 // apps/cms/src/collections/Users.ts
 
-import type { CollectionConfig } from 'payload';
-import { ROLE_LIST } from '../access/roles';
-import { isAdmin, allowIfSelfOrAdmin } from '../access/control';
+import type { CollectionConfig } from 'payload'
+import { ROLE_LIST } from '../access/roles'
+import { isAdmin, allowIfSelfOrAdmin } from '../access/control'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -44,4 +44,4 @@ export const Users: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
   ],
-};
+}

@@ -1,36 +1,39 @@
 {
   "extends": "../../tsconfig.base.json",
+
   "compilerOptions": {
+    /* ===== 🌐 Core Resolution ===== */
     "baseUrl": ".",
-    "target": "ES2022",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "jsx": "preserve",
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "incremental": true,
-
-    "plugins": [
-      { "name": "next" }
-    ],
-
     "paths": {
       "@/*": ["./src/*"],
       "@payload-config": ["./src/payload.config.ts"]
-    }
+    },
+
+    /* ===== 💻 Environment ===== */
+    "types": ["node"],
+
+    /* ===== 🚀 Next.js + Modern TS ===== */
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+
+    /* ===== 🔒 TS Safety ===== */
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "incremental": true,
+
+    /* ===== ⚙️ Next.js Plugin ===== */
+    "plugins": [{ "name": "next" }]
   },
 
-  "include": [
-    "next-env.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
+  /* ===== 📁 Include Payload Types ===== */
+  "include": ["next-env.d.ts", "src", ".next/types/**/*.ts"],
 
   "exclude": ["node_modules"]
 }

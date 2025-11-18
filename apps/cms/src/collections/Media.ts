@@ -1,7 +1,7 @@
 // apps/cms/src/collections/Media.ts
 
-import type { CollectionConfig } from 'payload';
-import { allowAdminsAnd } from '../access/control';
+import type { CollectionConfig } from 'payload'
+import { allowAdminsAnd } from '../access/control'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -56,4 +56,4 @@ export const Media: CollectionConfig = {
     //   type: 'text',
     // }
   ],
-};
+}

@@ -3,11 +3,11 @@ export function GET() {
     JSON.stringify({
       status: 'ok',
       uptime: process.uptime(),
-      timestamp: Date.now()
+      timestamp: Date.now(),
     }),
     {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    }
-  );
+      headers: { 'Content-Type': 'application/json' },
+    },
+  )
 }

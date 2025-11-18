@@ -13,7 +13,6 @@ export default async function HomePage() {
 
   return (
     <div className="wn-admin">
-
       {/* Moving Neon Background */}
       <div className="wn-bg"></div>
       <div className="wn-bg-overlay"></div>

@@ -1,21 +1,21 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-import { buildConfig } from 'payload';
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { s3Storage } from '@payloadcms/storage-s3';
+import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { s3Storage } from '@payloadcms/storage-s3'
 
-import { Users } from './collections/Users';
-import { Media } from './collections/Media';
-import { Articles } from './collections/Articles';
-import { Categories } from './collections/Categories';
-import { Polls } from './collections/Polls';
-import { PollItems } from './collections/PollItems';
-import { Tags } from './collections/Tags';
+import { Users } from './collections/Users'
+import { Media } from './collections/Media'
+import { Articles } from './collections/Articles'
+import { Categories } from './collections/Categories'
+import { Polls } from './collections/Polls'
+import { PollItems } from './collections/PollItems'
+import { Tags } from './collections/Tags'
 
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   serverURL: process.env.PUBLIC_CMS_URL,
@@ -52,4 +52,4 @@ export default buildConfig({
   typescript: {
     outputFile: path.join(dirname, 'payload-types.ts'),
   },
-});
+})

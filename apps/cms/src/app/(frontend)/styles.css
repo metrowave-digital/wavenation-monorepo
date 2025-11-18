@@ -2,20 +2,20 @@
    Brand Variables
 -------------------------------------- */
 :root {
-  --color-primary: #E92C63;
-  --color-accent: #00B3FF;
-  --color-green: #39FF14;
+  --color-primary: #e92c63;
+  --color-accent: #00b3ff;
+  --color-green: #39ff14;
 
-  --text-primary: #FFFFFF;
-  --text-secondary: #B3B3B3;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
 
-  --bg-dark: #0A0A0A;
+  --bg-dark: #0a0a0a;
 
   --glass-bg: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.12);
 
-  --font-primary: "Poppins", sans-serif;
-  --font-secondary: "Inter", sans-serif;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
 }
 
 /* Reset */
@@ -25,7 +25,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   background: var(--bg-dark);
   color: var(--text-primary);
   font-family: var(--font-secondary);
@@ -55,7 +56,8 @@ html, body {
 .wn-bg {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     rgba(233, 44, 99, 0.35),
     rgba(0, 179, 255, 0.35),
     rgba(57, 255, 20, 0.25)
@@ -66,9 +68,15 @@ html, body {
 }
 
 @keyframes bgMove {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .wn-bg-overlay {

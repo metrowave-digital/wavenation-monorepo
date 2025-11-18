@@ -24,10 +24,10 @@ WaveNation uses a **multi-environment, multi-service deployment pipeline**:
 
 This document explains:
 
-* How CI/CD is configured
-* How deployments are triggered
-* Required environment variables
-* Screenshot placeholders for documentation
+- How CI/CD is configured
+- How deployments are triggered
+- Required environment variables
+- Screenshot placeholders for documentation
 
 ---
 
@@ -69,9 +69,9 @@ metrowave-digital/wavenation-monorepo
 
 **Vercel deploys automatically when:**
 
-* A PR is opened → creates a Preview
-* `dev` is updated → Staging Deployment
-* `main` is updated → Production Deployment
+- A PR is opened → creates a Preview
+- `dev` is updated → Staging Deployment
+- `main` is updated → Production Deployment
 
 ### 📁 Root Directory
 
@@ -110,9 +110,9 @@ apps/web
 
 The Payload CMS runs with **Docker** and requires:
 
-* PostgreSQL (Neon/Postgres)
-* S3 or R2 Storage
-* Render Web Service
+- PostgreSQL (Neon/Postgres)
+- S3 or R2 Storage
+- Render Web Service
 
 ### 🐳 Dockerfile Location
 
@@ -219,9 +219,9 @@ yourproject.vercel.app
 
 Check:
 
-* Homepage loads
-* Streaming player loads
-* GraphQL API connected
+- Homepage loads
+- Streaming player loads
+- GraphQL API connected
 
 ### CMS
 
@@ -233,9 +233,9 @@ cms.example.com/admin
 
 Verify:
 
-* Login works
-* Uploads go to S3/R2
-* Health check
+- Login works
+- Uploads go to S3/R2
+- Health check
 
 ```
 /health
@@ -243,9 +243,9 @@ Verify:
 
 ### Logs
 
-* Vercel → Deployments → Logs
-* Render → Dashboard → Events / Logs
-* GitHub → Actions → Workflow Runs
+- Vercel → Deployments → Logs
+- Render → Dashboard → Events / Logs
+- GitHub → Actions → Workflow Runs
 
 ---
 

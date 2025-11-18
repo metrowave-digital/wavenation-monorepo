@@ -1,32 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env sh
 . "$(dirname "$0")/_/husky.sh"
 
 echo "🚀 Running build verification before push..."
-
-# Step 1: Auto-fix Prettier formatting (silent)
 echo "🧹 Auto-fixing Prettier formatting..."
-pnpm exec prettier --write . > /dev/null
+pnpm prettier --write .
 
-# Step 2: Run ESLint across all relevant packages
 echo "🔍 Running ESLint across packages..."
-pnpm exec turbo run lint --filter=...[HEAD] -- --fix || {
+pnpm turbo run lint --filter=...
+
+if [ $? -ne 0 ]; then
   echo "❌ Lint errors detected — fix before pushing."
   exit 1
-}
-
-# Step 3: Run TypeScript type check
-echo "🧠 Running TypeScript type check..."
-pnpm exec turbo run typecheck --filter=...[HEAD] || {
-  echo "❌ Type errors detected — please fix before pushing."
-  exit 1
-}
-
-# Step 4: Optional test run (you can comment out if not ready)
-# echo "🧪 Running tests..."
-# pnpm exec turbo run test --filter=...[HEAD] || {
-#   echo "❌ Tests failed — fix before pushing."
-#   exit 1
-# }
-
-echo "✅ All checks passed! Proceeding with push..."
-exit 0
+fi

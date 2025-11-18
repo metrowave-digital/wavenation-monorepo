@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload'
 
 export const PollItems: CollectionConfig = {
   slug: 'poll-items',
@@ -39,4 +39,4 @@ export const PollItems: CollectionConfig = {
       },
     },
   ],
-};
+}
